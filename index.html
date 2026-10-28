@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>楓茶米 Feng-Cha-Mi | 走進自然，體驗純粹的鄉村慢旅</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tea: {
+                            DEFAULT: '#4A6B46',
+                            dark: '#395436',
+                            light: '#62875D',
+                            pale: '#EBF1EA',
+                        },
+                        rice: {
+                            DEFAULT: '#F7F3EA',
+                            warm: '#EFE7D6',
+                            dark: '#D8CBB5',
+                        },
+                        amber: {
+                            warm: '#D97706',
+                            rustic: '#C25E00',
+                        },
+                        charcoal: '#2D3748',
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif TC"', 'serif'],
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 自訂樣式與微調 */
+        body {
+            background-color: #F7F3EA;
+            color: #2D3748;
+            font-family: 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .font-serif-tc {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        /* 導覽列滾動陰影特效 */
+        .navbar-scrolled {
+            background-color: rgba(247, 243, 234, 0.95) !important;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px -5px rgba(74, 107, 70, 0.15);
+        }
+
+        /* Hero 區域微漸層與底紋 */
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(247, 243, 234, 0.88) 0%, rgba(239, 231, 214, 0.92) 100%),
+                        url('https://images.unsplash.com/photo-1546852199-2d7e41706922?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 卡片懸浮效果 */
+        .card-hover {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 30px -10px rgba(74, 107, 70, 0.2);
+        }
+
+        /* 按鈕氣泡與動態動畫 */
+        .btn-primary {
+            background-color: #4A6B46;
+            color: #FFFFFF;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary:hover {
+            background-color: #395436;
+            box-shadow: 0 6px 18px rgba(74, 107, 70, 0.35);
+        }
+
+        /* 水波紋裝飾圖騰線條 */
+        .wavy-line {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q 25 20, 50 10 T 100 10' fill='none' stroke='%204A6B46' stroke-width='2' opacity='0.3'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+        }
+
+        /* 圖片加載失敗自動退回占位風格 */
+        .img-fallback {
+            background-color: #EFE7D6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4A6B46;
+        }
+    </style>
+</head>
+<body class="bg-rice min-h-screen flex flex-col antialiased">
+
+    <!-- 1. Header 導覽列 -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-rice/80 backdrop-blur-md border-b border-tea/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo 標誌區 -->
+                <a href="#" class="flex items-center gap-3 group focus:outline-none">
+                    <div class="w-11 h-11 rounded-full bg-tea text-rice flex items-center justify-center text-xl shadow-md group-hover:scale-105 transition-transform">
+                        <i class="fa-solid me-0.5"><span class="font-serif-tc font-bold text-lg">楓</span></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif-tc text-2xl font-bold tracking-widest text-tea group-hover:text-tea-dark transition-colors">
+                            楓茶米
+                        </span>
+                        <span class="text-[10px] tracking-widest text-tea/70 uppercase font-sans -mt-1">
+                            Feng-Cha-Mi Rural Tour
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Desktop 選單 (5個主要頁面) -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <a href="#about" class="px-3 py-2 rounded-full text-sm font-medium text-charcoal hover:text-tea hover:bg-tea/10 transition-all">
+                        認識楓茶米
+                    </a>
+                    <a href="#resources" class="px-3 py-2 rounded-full text-sm font-medium text-charcoal hover:text-tea hover:bg-tea/10 transition-all">
+                        在地資源
+                    </a>
+                    <a href="#features" class="px-3 py-2 rounded-full text-sm font-medium text-charcoal hover:text-tea hover:bg-tea/10 transition-all">
+                        推薦遊程
+                    </a>
+                    <a href="#quest" class="px-3 py-2 rounded-full text-sm font-medium text-charcoal hover:text-tea hover:bg-tea/10 transition-all flex items-center gap-1">
+                        <i class="fa-solid fa-compass text-amber-rustic text-xs"></i>
+                        解謎任務
+                    </a>
+                    <a href="#transport" class="px-3 py-2 rounded-full text-sm font-medium text-charcoal hover:text-tea hover:bg-tea/10 transition-all">
+                        交通資訊
+                    </a>
+                </nav>
+
+                <!-- 頂部右側動作按鈕 -->
+                <div class="hidden lg:flex items-center gap-3">
+                    <a href="#footer" class="btn-primary text-xs tracking-wider px-4 py-2.5 rounded-full font-medium inline-flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-check"></i> 預約體驗
+                    </a>
+                </div>
+
+                <!-- 手機版漢堡選單按鈕 -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" type="button" class="text-tea p-2 rounded-lg hover:bg-tea/10 focus:outline-none" aria-label="打開主選單">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 手機版展開選單 (Mobile Menu) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-rice border-b border-tea/10 px-4 pt-2 pb-6 space-y-2 shadow-lg">
+            <a href="#about" class="mobile-link block px-4 py-2.5 rounded-xl text-base font-medium text-charcoal hover:bg-tea/10 hover:text-tea">
+                <i class="fa-solid fa-leaf text-tea w-6"></i>認識楓茶米
+            </a>
+            <a href="#resources" class="mobile-link block px-4 py-2.5 rounded-xl text-base font-medium text-charcoal hover:bg-tea/10 hover:text-tea">
+                <i class="fa-solid fa-mountain-sun text-tea w-6"></i>在地資源
+            </a>
+            <a href="#features" class="mobile-link block px-4 py-2.5 rounded-xl text-base font-medium text-charcoal hover:bg-tea/10 hover:text-tea">
+                <i class="fa-solid fa-map-location-dot text-tea w-6"></i>推薦遊程
+            </a>
+            <a href="#quest" class="mobile-link block px-4 py-2.5 rounded-xl text-base font-medium text-charcoal hover:bg-tea/10 hover:text-tea">
+                <i class="fa-solid fa-puzzle-piece text-amber-rustic w-6"></i>解謎任務
+            </a>
+            <a href="#transport" class="mobile-link block px-4 py-2.5 rounded-xl text-base font-medium text-charcoal hover:bg-tea/10 hover:text-tea">
+                <i class="fa-solid fa-bus text-tea w-6"></i>交通資訊
+            </a>
+            <div class="pt-2">
+                <a href="#footer" class="mobile-link w-full btn-primary py-3 rounded-xl text-center font-medium block">
+                    預約體驗與行程
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-20">
+        
+        <!-- 2. Hero 區塊 -->
+        <section class="relative min-h-[85vh] flex items-center justify-center hero-bg px-4 sm:px-6 lg:px-8 py-20 overflow-hidden">
+            <!-- 裝飾背景元件 -->
+            <div class="absolute inset-0 bg-gradient-to-b from-rice/40 via-transparent to-rice"></div>
+            
+            <div class="relative max-w-4xl mx-auto text-center z-10 space-y-8">
+                <!-- 標籤 -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur border border-tea/20 shadow-sm text-tea text-xs sm:text-sm font-medium tracking-wide">
+                    <span class="w-2 h-2 rounded-full bg-tea animate-pulse"></span>
+                    臺灣桃園龜山 ‧ 療癒農村體驗首選
+                </div>
+
+                <!-- 大標題 -->
+                <h1 class="font-serif-tc text-3xl sm:text-5xl lg:text-6xl font-bold text-tea leading-tight tracking-wide">
+                    走進楓茶米<br class="hidden sm:inline"/>
+                    <span class="text-charcoal font-serif-tc font-semibold">體驗自然的溫暖與純粹</span>
+                </h1>
+
+                <!-- 副標題 -->
+                <p class="text-base sm:text-lg lg:text-xl text-charcoal/80 max-w-2xl mx-auto font-light leading-relaxed">
+                    漫步山林茶園，品味手作米香，展開一場療癒身心的農村慢旅。重溫土地的芬芳，感受最真摯的四季款待。
+                </p>
+
+                <!-- 動作按鈕組 -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="#features" class="btn-primary w-full sm:w-auto px-8 py-4 rounded-full text-base font-medium shadow-lg hover:shadow-xl flex items-center justify-center gap-3 group">
+                        <span>開始探索</span>
+                        <i class="fa-solid fa-arrow-down-long group-hover:translate-y-1 transition-transform"></i>
+                    </a>
+                    <a href="#quest" class="w-full sm:w-auto px-8 py-4 rounded-full text-base font-medium bg-white/90 text-tea hover:bg-white border border-tea/20 shadow-sm transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-gamepad text-amber-rustic"></i>
+                        <span>實境解謎體驗</span>
+                    </a>
+                </div>
+
+                <!-- 數據小標籤 -->
+                <div class="pt-8 grid grid-cols-3 gap-4 max-w-lg mx-auto border-t border-tea/10">
+                    <div>
+                        <p class="font-serif-tc text-2xl font-bold text-tea">100%</p>
+                        <p class="text-xs text-charcoal/60 mt-0.5">自然有機作物</p>
+                    </div>
+                    <div>
+                        <p class="font-serif-tc text-2xl font-bold text-tea">4 大</p>
+                        <p class="text-xs text-charcoal/60 mt-0.5">四季特色體驗</p>
+                    </div>
+                    <div>
+                        <p class="font-serif-tc text-2xl font-bold text-tea">4.9 ★</p>
+                        <p class="text-xs text-charcoal/60 mt-0.5">遊客溫馨好評</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 理念/簡介區塊 (認識楓茶米) -->
+        <section id="about" class="py-16 bg-white/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2
